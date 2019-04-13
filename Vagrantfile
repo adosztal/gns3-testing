@@ -19,13 +19,6 @@ Vagrant.configure("2") do |config|
     server.vm.network :private_network, ip: "172.19.139.10"
     server.vm.provision :shell, path: "deploy-gns3-server.sh"
   end
-  
-end
-
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"
-  config.vm.box_check_update = true
 
   config.vm.define "gns3-testing-client" do |client|
     client.vm.provider "virtualbox" do |vb|
