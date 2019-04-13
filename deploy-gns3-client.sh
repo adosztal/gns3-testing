@@ -4,7 +4,7 @@
 export DEBIAN_FRONTEND=noninteractive
 add-apt-repository ppa:gns3/unstable -y
 apt update && apt-get upgrade -yqq
-apt install gns3-gui firefox gdm3 gnome-terminal -yqq
+apt install gns3-gui firefox gdm3 gnome-terminal nautilus -yqq
 systemctl set-default runlevel5.target
 
 # Download config files
@@ -14,8 +14,12 @@ GNS3_CONFDIR="/home/vagrant/.config/GNS3/${GNS3_SHORTVER}"
 mkdir -p $GNS3_CONFDIR
 curl https://raw.githubusercontent.com/adosztal/gns3-testing/master/gns3_gui.conf > $GNS3_CONFDIR/gns3_gui.conf
 curl https://raw.githubusercontent.com/adosztal/gns3-testing/master/gns3_server.conf > $GNS3_CONFDIR/gns3_server.conf
+
+# Adding GNS3 version to the GUI config file
 sed -i "s/\"version\":/\"version\": \"${GNS3_VER}\"/g" $GNS3_CONFDIR/gns3_gui.conf
-chmod -R vagrant:vagrant $GNS3_CONFDIR
+
+# This script runs as root, need to change the .config directory's ownership
+chown -R vagrant:vagrant /home/vagrant/.config/
 
 # Reboot
 reboot
