@@ -1,5 +1,5 @@
 # GNS3-testing
-The purpose of this setup is automating the deployment of development GNS3 versions so testers launch a new environment quickly. It uses Vagrant to set up a remote GNS3 server and a client VM (GUI) pair.
+The purpose of this is automating the deployment of development GNS3 versions so testers can launch a new environment quickly. It uses Vagrant to set up a remote GNS3 server and a client VM (GUI) pair.
 
 ## Usage
 The VMs have a private network that they use to communicate with each other. IP addresses:
