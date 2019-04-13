@@ -6,6 +6,8 @@ The VMs have a private network that they use to communicate with each other. IP 
 * Server: 172.19.139.10
 * Client: 172.19.139.11
 
+Credentials: vagrant / vagrant
+
 The GNS3 GUI on the client is preconfigured, all you need to do is import the appliances and create a project.
 
 ## Limitations
