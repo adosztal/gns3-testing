@@ -9,7 +9,7 @@ The VMs have a private network that they use to communicate with each other. IP 
 The GNS3 GUI on the client is preconfigured, all you need to do is import the appliances and create a project.
 
 ## Limitations
-Vagrant uses VirtualBox as provider because that's free and commonly used. However nested virtualization support is limited; hence you should avoid running CPU intensive QEMU VMs. You can still use the following
+Vagrant uses VirtualBox as provider because that's free and commonly used. However nested virtualization support is limited; hence you should avoid running CPU intensive QEMU VMs. You can still use the following:
 * Docker containers
 * Dynamips routers
 * IOU devices
