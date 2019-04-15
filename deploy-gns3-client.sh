@@ -1,15 +1,22 @@
 #!/bin/sh
 
-# Install packages
+### Install packages
 export DEBIAN_FRONTEND=noninteractive
 add-apt-repository ppa:gns3/unstable -y
 apt update && apt-get upgrade -yqq
-apt install gns3-gui firefox gdm3 gnome-terminal nautilus -yqq
+apt install gns3-gui firefox gdm3 gnome-terminal nautilus xtightvncviewer ssh -yqq
 systemctl set-default runlevel5.target
 
-# Download config files
+### Download config files
 GNS3_VER=`dpkg -s gns3-gui | grep Version | cut -d " " -f 2 | sed 's/~.*//'`
 GNS3_SHORTVER=`echo $GNS3_VER | sed 's/[a-z].*//'`
+
+# Checking if version number ends with 0. If yes, strip the patch number
+GNS3_SHORTVER_LAST=`echo "${GNS3_SHORTVER: -1}"`
+if [ "$GNS3_SHORTVER_LAST" == "0" ]; then
+    GNS3_SHORTVER=`echo $GNS3_SHORTVER | cut -d "." -f -2`
+fi
+
 GNS3_CONFDIR="/home/vagrant/.config/GNS3/${GNS3_SHORTVER}"
 mkdir -p $GNS3_CONFDIR
 curl https://raw.githubusercontent.com/adosztal/gns3-testing/master/gns3_gui.conf > $GNS3_CONFDIR/gns3_gui.conf
