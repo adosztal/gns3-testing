@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### Install packages
 export DEBIAN_FRONTEND=noninteractive
@@ -12,8 +12,8 @@ GNS3_VER=`dpkg -s gns3-gui | grep Version | cut -d " " -f 2 | sed 's/~.*//'`
 GNS3_SHORTVER=`echo $GNS3_VER | sed 's/[a-z].*//'`
 
 # Checking if version number ends with 0. If yes, strip the patch number
-GNS3_SHORTVER_LAST=`echo "${GNS3_SHORTVER: -1}"`
-if [ "$GNS3_SHORTVER_LAST" == "0" ]; then
+GNS3_SHORTVER_LAST=`echo "${GNS3_SHORTVER:(-2)}"`
+if [ "$GNS3_SHORTVER_LAST" == ".0" ]; then
     GNS3_SHORTVER=`echo $GNS3_SHORTVER | cut -d "." -f -2`
 fi
 
